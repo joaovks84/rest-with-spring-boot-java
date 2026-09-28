@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController//Para a api entende que isso é um restcontroller
 @RequestMapping("/person")
 public class PersonController {
@@ -22,7 +24,13 @@ public class PersonController {
     )
     public Person findById(@PathVariable("id") String id) {
         return service.findById(id);
-
+    }
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public List<Person> findAll() {//add lista basica
+        return service.findAll();
     }
 }
 
