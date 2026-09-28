@@ -2,12 +2,10 @@ package br.com.erudio.controller;
 
 import br.com.erudio.PersonService;
 import br.com.erudio.model.Person;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +29,28 @@ public class PersonController {
     )
     public List<Person> findAll() {//add lista basica
         return service.findAll();
+    }
+    @RequestMapping(
+            method = RequestMethod.POST, // Tipo
+            consumes = MediaType.APPLICATION_JSON_VALUE, // consumindo JSON
+            produces = MediaType.APPLICATION_JSON_VALUE // produzindo JSON
+    )
+    public Person create(@RequestBody Person person) {
+        return service.create(person);
+    }
+    @RequestMapping(
+            method = RequestMethod.PUT,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public Person update(@RequestBody Person person) {
+        return service.upadate(person);
+    }
+    @RequestMapping( value = "/{id}",
+            method = RequestMethod.DELETE
+    )
+    public void delete(@PathParam("id") String id){
+        service.delete(id);
     }
 }
 

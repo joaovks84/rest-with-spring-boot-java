@@ -2,6 +2,7 @@ package br.com.erudio;
 
 import br.com.erudio.model.Person;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,18 @@ public class PersonService {
             persons.add(person);
         }
         return persons;
+    }
+    public Person create(Person person){
+        logger.info("Creating a new Person!");
+        return person;
+    }
+    public Person upadate(Person person){
+        logger.info("Updating Person!");
+        return person;
+    }
+    public void delete(String id){
+        logger.info("Deleting Person!");
+
     }
     private Person mockPerson(int i){ // pessoa generica, somente para teste
         Person person = new Person();
